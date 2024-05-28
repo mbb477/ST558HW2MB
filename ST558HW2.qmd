@@ -55,15 +55,15 @@ which(diff_bp > 0)
 
 ```{r}
 #create subset vector of patients with only positive changes
-pos_diff_bp <- c(9, 13, 17)
-diff_bp[-pos_diff_bp]
+neg_diff_bp <- c(9, 13, 17)
+diff_bp[-neg_diff_bp]
 ```
 
 ## 7. Calculate average of only positive differences
 
 ```{r}
 #calculate average of postive differences
-pos_avg <- mean(diff_bp[-pos_diff_bp])
+pos_avg <- mean(diff_bp[-neg_diff_bp])
 pos_avg
 ```
 

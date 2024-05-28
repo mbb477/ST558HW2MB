@@ -225,8 +225,8 @@ Subject_18 Subject_19 Subject_20
 <h2 class="anchored" data-anchor-id="subset-vector-of-differences-to-include-only-positive-changes">6. Subset vector of differences to include only positive changes</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#create subset vector of patients with only positive changes</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>pos_diff_bp <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">9</span>, <span class="dv">13</span>, <span class="dv">17</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>diff_bp[<span class="sc">-</span>pos_diff_bp]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>neg_diff_bp <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">9</span>, <span class="dv">13</span>, <span class="dv">17</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>diff_bp[<span class="sc">-</span>neg_diff_bp]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> Subject_1  Subject_2  Subject_3  Subject_4  Subject_5  Subject_6  Subject_7 
         16         30          3         25         26         18          5 
@@ -241,7 +241,7 @@ Subject_18 Subject_19 Subject_20
 <h2 class="anchored" data-anchor-id="calculate-average-of-only-positive-differences">7. Calculate average of only positive differences</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#calculate average of postive differences</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>pos_avg <span class="ot">&lt;-</span> <span class="fu">mean</span>(diff_bp[<span class="sc">-</span>pos_diff_bp])</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>pos_avg <span class="ot">&lt;-</span> <span class="fu">mean</span>(diff_bp[<span class="sc">-</span>neg_diff_bp])</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>pos_avg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 20.64706</code></pre>
