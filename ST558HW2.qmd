@@ -1,0 +1,264 @@
+---
+title: "ST558 homework 2"
+author: "Melanie Beebe"
+format: html
+editor: visual
+---
+
+# Task 1. Basic vector practice
+
+## 1. Create two vectors
+
+```{r}
+#Create Pre and post treatment vectors
+pre_bp <- c(130, 128, 116, 124, 133, 134, 118, 126, 114, 127, 141, 138, 128, 140,
+         137, 131, 120, 128, 139, 135)
+post_bp <- c(114, 98, 113, 99, 107, 116, 113, 111, 119, 117, 101, 119, 130, 122, 
+          106, 106, 124, 102, 117, 113)
+```
+
+## 2. Assign names to vectors
+
+```{r}
+#Create and assign names to vectors
+names(pre_bp) <- paste("Subject", 1:20, sep = "_")
+names(post_bp) <- paste("Subject", 1:20, sep = "_")
+#view vectors
+pre_bp
+post_bp
+```
+
+## 3. Calculate the change in blood pressure for each patient
+
+```{r}
+#Calculate pre and post differences
+diff_bp <- pre_bp - post_bp
+diff_bp
+```
+
+## 4. Calculater the average decrease in blood pressure across patients
+
+```{r}
+#Calculate the average decrease in blood pressure over all patients
+avg <- mean(diff_bp)
+avg
+```
+
+## 5. Determine which patients experienced a decrease
+
+```{r}
+#isolate patients who experienced a decrease
+which(diff_bp > 0)
+```
+
+## 6. Subset vector of differences to include only positive changes
+
+```{r}
+#create subset vector of patients with only positive changes
+pos_diff_bp <- c(9, 13, 17)
+diff_bp[-pos_diff_bp]
+```
+
+## 7. Calculate average of only positive differences
+
+```{r}
+#calculate average of postive differences
+pos_avg <- mean(diff_bp[-pos_diff_bp])
+pos_avg
+```
+
+# Task 2. Basic data frame practice
+
+## 1. Create data frame with 4 columns
+
+```{r}
+#add patient column
+patient <- (1:20)
+#create data frame
+bp_df <- data.frame(patient, pre_bp, post_bp, diff_bp)
+bp_df
+```
+
+## 2. Return rows with negative diff_bp
+
+```{r}
+#create new data frame with just negative diff_bp
+subset(bp_df, diff_bp < 0)
+#Alternative 
+#neg_bp_df <- bp_df[bp_df$diff_bp < 0, ]
+#neg_bp_df
+```
+
+## 3. Add new column with true for post_bp \< 120
+
+```{r}
+# Add column for post_bp < 120    
+bp_df$post_bp_less120 <- bp_df$post_bp < 120
+#alt code from chapter 12 extra reading
+#library(dplyr)
+#bp_df |> 
+#  mutate(
+#    post_bp_less120 = post_bp < 120
+#  )
+```
+
+## 4. Print data frame
+
+```{r}
+knitr::kable(bp_df)
+```
+
+# Task 3. List practice
+
+## 1. Create data frame with placebo data
+
+```{r}
+pre_bp <- c(138, 135, 147, 117, 152, 134, 114, 121, 131, 130)
+post_bp <- c(105, 136, 123, 130, 134, 143, 135, 139, 120, 124)
+#Create and assign names to vectors
+names(pre_bp) <- paste("Subject", 1:10, sep = "_")
+names(post_bp) <- paste("Subject", 1:10, sep = "_")
+#view vectors
+#pre_bp
+#post_bp
+#Calculate pre and post placebo differences
+diff_bp <- pre_bp - post_bp
+#diff_bp_placebo
+#Add patient column
+patient <- (1:10)
+#create data frame
+bp_df_placebo <- data.frame(patient, pre_bp, post_bp,
+                            diff_bp)
+bp_df_placebo
+# add column for post_bp < 120
+bp_df_placebo$post_bp_less120 <- bp_df_placebo$post_bp < 120
+# create table of data frame
+knitr::kable(bp_df_placebo)
+```
+
+## 2. Create a list with treatment and placebo elements
+
+```{r}
+#Create list
+bp_list <- list(treatment = bp_df, placebo = bp_df_placebo)
+bp_list
+```
+
+## 3. Access the first list element using three different types of syntax
+
+```{r}
+bp_list[1]
+bp_list[[1]]
+str(bp_list[1])
+```
+
+## 4. Access the placebo pre_bp column
+
+```{r}
+#obtain pre-bp_placebo column in one line
+bp_list$placebo[[2]]
+# Or
+#bp_list$placebo$pre_bp
+```
+
+# Task 4. Control Flow Practice
+
+## 1. Add status column to data frames using lists
+
+```{r}
+#create status columns
+bp_list[[1]]$status <- character(20)
+bp_list[[2]]$status <- character(10)
+bp_list
+```
+
+## 2. Use loop to create status column values for treatment group
+
+```{r}
+#create status values for treatment group
+for (i in seq_len(nrow(bp_list$treatment))) {
+  if(bp_list$treatment$post_bp[i] <= 120) {
+    bp_list$treatment$status[i] <- "optimal"
+  } else if (bp_list$treatment$post_bp[i] <= 130) {
+    bp_list$treatment$status[i] <- "borderline"
+  } else if (bp_list$treatment$post_bp[i] > 130) {
+    bp_list$treatment$status[i] <- "high"
+  }
+  }
+```
+
+## 3. Use loop to create status column values for placebo group
+
+```{r}
+#create status values for the placebo group
+for (i in seq_len(nrow(bp_list$placebo))) {
+  if(bp_list$placebo$post_bp[i] <= 120) {
+    bp_list$placebo$status[i] <- "optimal"
+  } else if (bp_list$placebo$post_bp[i] <= 130) {
+    bp_list$placebo$status[i] <- "borderline"
+  } else if (bp_list$placebo$post_bp[i] > 130) {
+    bp_list$placebo$status[i] <- "high"
+  }
+}
+bp_list
+```
+
+# Task 5. Function Writing
+
+## 1. Write a function to obtain individual summary statistics
+
+```{r}
+summary_stats <- function(my_list, stat = "mean") {
+  #stats ("mean", "var" "sd", "min", "max")
+  my_fun <- get(stat)
+  stat_results <- numeric(0)
+  stat_names <- character(0)
+    for(df_name in names(my_list)) {
+    df <- my_list[[df_name]]
+    if(!is.numeric(df$pre_bp) || !is.numeric(df$post_bp) || 
+       !is.numeric(df$diff_bp)) {
+      stop("not numeric")
+    }
+    stat_results <- c(stat_results,my_fun(df$pre_bp),
+                      my_fun(df$post_bp),
+                      my_fun(df$diff_bp))
+    stat_names <- c(stat_names, 
+                    paste(df_name, "pre_bp", stat, sep = "_"),
+                    paste(df_name, "post_bp", stat, sep = "_"), 
+                    paste(df_name, "diff_bp", stat, sep = "_"))
+  }
+  names(stat_results) <- stat_names
+  return(stat_results)
+}
+```
+
+## 2. Apply function without specifying statistic
+
+```{r}
+summary_stats(bp_list)
+```
+
+## 3a. Apply function specifying "var"
+
+```{r}
+summary_stats(bp_list, "var")
+```
+
+
+## 3b. Apply function specifying "sd"
+
+```{r}
+summary_stats(bp_list, "sd")
+```
+
+## 3c. Apply function specifying "min"
+
+```{r}
+summary_stats(bp_list, "min")
+```
+
+## 3d. Apply function specifying "max"
+
+```{r}
+summary_stats(bp_list, "max")
+```

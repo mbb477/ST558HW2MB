@@ -1,0 +1,177 @@
+[
+  {
+    "objectID": "ST558HW2.html",
+    "href": "ST558HW2.html",
+    "title": "ST558 homework 2",
+    "section": "",
+    "text": "#Create Pre and post treatment vectors\npre_bp &lt;- c(130, 128, 116, 124, 133, 134, 118, 126, 114, 127, 141, 138, 128, 140,\n         137, 131, 120, 128, 139, 135)\npost_bp &lt;- c(114, 98, 113, 99, 107, 116, 113, 111, 119, 117, 101, 119, 130, 122, \n          106, 106, 124, 102, 117, 113)\n\n\n\n\n\n#Create and assign names to vectors\nnames(pre_bp) &lt;- paste(\"Subject\", 1:20, sep = \"_\")\nnames(post_bp) &lt;- paste(\"Subject\", 1:20, sep = \"_\")\n#view vectors\npre_bp\n\n Subject_1  Subject_2  Subject_3  Subject_4  Subject_5  Subject_6  Subject_7 \n       130        128        116        124        133        134        118 \n Subject_8  Subject_9 Subject_10 Subject_11 Subject_12 Subject_13 Subject_14 \n       126        114        127        141        138        128        140 \nSubject_15 Subject_16 Subject_17 Subject_18 Subject_19 Subject_20 \n       137        131        120        128        139        135 \n\npost_bp\n\n Subject_1  Subject_2  Subject_3  Subject_4  Subject_5  Subject_6  Subject_7 \n       114         98        113         99        107        116        113 \n Subject_8  Subject_9 Subject_10 Subject_11 Subject_12 Subject_13 Subject_14 \n       111        119        117        101        119        130        122 \nSubject_15 Subject_16 Subject_17 Subject_18 Subject_19 Subject_20 \n       106        106        124        102        117        113 \n\n\n\n\n\n\n#Calculate pre and post differences\ndiff_bp &lt;- pre_bp - post_bp\ndiff_bp\n\n Subject_1  Subject_2  Subject_3  Subject_4  Subject_5  Subject_6  Subject_7 \n        16         30          3         25         26         18          5 \n Subject_8  Subject_9 Subject_10 Subject_11 Subject_12 Subject_13 Subject_14 \n        15         -5         10         40         19         -2         18 \nSubject_15 Subject_16 Subject_17 Subject_18 Subject_19 Subject_20 \n        31         25         -4         26         22         22 \n\n\n\n\n\n\n#Calculate the average decrease in blood pressure over all patients\navg &lt;- mean(diff_bp)\navg\n\n[1] 17\n\n\n\n\n\n\n#isolate patients who experienced a decrease\nwhich(diff_bp &gt; 0)\n\n Subject_1  Subject_2  Subject_3  Subject_4  Subject_5  Subject_6  Subject_7 \n         1          2          3          4          5          6          7 \n Subject_8 Subject_10 Subject_11 Subject_12 Subject_14 Subject_15 Subject_16 \n         8         10         11         12         14         15         16 \nSubject_18 Subject_19 Subject_20 \n        18         19         20 \n\n\n\n\n\n\n#create subset vector of patients with only positive changes\npos_diff_bp &lt;- c(9, 13, 17)\ndiff_bp[-pos_diff_bp]\n\n Subject_1  Subject_2  Subject_3  Subject_4  Subject_5  Subject_6  Subject_7 \n        16         30          3         25         26         18          5 \n Subject_8 Subject_10 Subject_11 Subject_12 Subject_14 Subject_15 Subject_16 \n        15         10         40         19         18         31         25 \nSubject_18 Subject_19 Subject_20 \n        26         22         22 \n\n\n\n\n\n\n#calculate average of postive differences\npos_avg &lt;- mean(diff_bp[-pos_diff_bp])\npos_avg\n\n[1] 20.64706"
+  },
+  {
+    "objectID": "ST558HW2.html#create-two-vectors",
+    "href": "ST558HW2.html#create-two-vectors",
+    "title": "ST558 homework 2",
+    "section": "",
+    "text": "#Create Pre and post treatment vectors\npre_bp &lt;- c(130, 128, 116, 124, 133, 134, 118, 126, 114, 127, 141, 138, 128, 140,\n         137, 131, 120, 128, 139, 135)\npost_bp &lt;- c(114, 98, 113, 99, 107, 116, 113, 111, 119, 117, 101, 119, 130, 122, \n          106, 106, 124, 102, 117, 113)"
+  },
+  {
+    "objectID": "ST558HW2.html#assign-names-to-vectors",
+    "href": "ST558HW2.html#assign-names-to-vectors",
+    "title": "ST558 homework 2",
+    "section": "",
+    "text": "#Create and assign names to vectors\nnames(pre_bp) &lt;- paste(\"Subject\", 1:20, sep = \"_\")\nnames(post_bp) &lt;- paste(\"Subject\", 1:20, sep = \"_\")\n#view vectors\npre_bp\n\n Subject_1  Subject_2  Subject_3  Subject_4  Subject_5  Subject_6  Subject_7 \n       130        128        116        124        133        134        118 \n Subject_8  Subject_9 Subject_10 Subject_11 Subject_12 Subject_13 Subject_14 \n       126        114        127        141        138        128        140 \nSubject_15 Subject_16 Subject_17 Subject_18 Subject_19 Subject_20 \n       137        131        120        128        139        135 \n\npost_bp\n\n Subject_1  Subject_2  Subject_3  Subject_4  Subject_5  Subject_6  Subject_7 \n       114         98        113         99        107        116        113 \n Subject_8  Subject_9 Subject_10 Subject_11 Subject_12 Subject_13 Subject_14 \n       111        119        117        101        119        130        122 \nSubject_15 Subject_16 Subject_17 Subject_18 Subject_19 Subject_20 \n       106        106        124        102        117        113"
+  },
+  {
+    "objectID": "ST558HW2.html#calculate-the-change-in-blood-pressure-for-each-patient",
+    "href": "ST558HW2.html#calculate-the-change-in-blood-pressure-for-each-patient",
+    "title": "ST558 homework 2",
+    "section": "",
+    "text": "#Calculate pre and post differences\ndiff_bp &lt;- pre_bp - post_bp\ndiff_bp\n\n Subject_1  Subject_2  Subject_3  Subject_4  Subject_5  Subject_6  Subject_7 \n        16         30          3         25         26         18          5 \n Subject_8  Subject_9 Subject_10 Subject_11 Subject_12 Subject_13 Subject_14 \n        15         -5         10         40         19         -2         18 \nSubject_15 Subject_16 Subject_17 Subject_18 Subject_19 Subject_20 \n        31         25         -4         26         22         22"
+  },
+  {
+    "objectID": "ST558HW2.html#calculater-the-average-decrease-in-blood-pressure-across-patients",
+    "href": "ST558HW2.html#calculater-the-average-decrease-in-blood-pressure-across-patients",
+    "title": "ST558 homework 2",
+    "section": "",
+    "text": "#Calculate the average decrease in blood pressure over all patients\navg &lt;- mean(diff_bp)\navg\n\n[1] 17"
+  },
+  {
+    "objectID": "ST558HW2.html#determine-which-patients-experienced-a-decrease",
+    "href": "ST558HW2.html#determine-which-patients-experienced-a-decrease",
+    "title": "ST558 homework 2",
+    "section": "",
+    "text": "#isolate patients who experienced a decrease\nwhich(diff_bp &gt; 0)\n\n Subject_1  Subject_2  Subject_3  Subject_4  Subject_5  Subject_6  Subject_7 \n         1          2          3          4          5          6          7 \n Subject_8 Subject_10 Subject_11 Subject_12 Subject_14 Subject_15 Subject_16 \n         8         10         11         12         14         15         16 \nSubject_18 Subject_19 Subject_20 \n        18         19         20"
+  },
+  {
+    "objectID": "ST558HW2.html#subset-vector-of-differences-to-include-only-positive-changes",
+    "href": "ST558HW2.html#subset-vector-of-differences-to-include-only-positive-changes",
+    "title": "ST558 homework 2",
+    "section": "",
+    "text": "#create subset vector of patients with only positive changes\npos_diff_bp &lt;- c(9, 13, 17)\ndiff_bp[-pos_diff_bp]\n\n Subject_1  Subject_2  Subject_3  Subject_4  Subject_5  Subject_6  Subject_7 \n        16         30          3         25         26         18          5 \n Subject_8 Subject_10 Subject_11 Subject_12 Subject_14 Subject_15 Subject_16 \n        15         10         40         19         18         31         25 \nSubject_18 Subject_19 Subject_20 \n        26         22         22"
+  },
+  {
+    "objectID": "ST558HW2.html#calculate-average-of-only-positive-differences",
+    "href": "ST558HW2.html#calculate-average-of-only-positive-differences",
+    "title": "ST558 homework 2",
+    "section": "",
+    "text": "#calculate average of postive differences\npos_avg &lt;- mean(diff_bp[-pos_diff_bp])\npos_avg\n\n[1] 20.64706"
+  },
+  {
+    "objectID": "ST558HW2.html#create-data-frame-with-4-columns",
+    "href": "ST558HW2.html#create-data-frame-with-4-columns",
+    "title": "ST558 homework 2",
+    "section": "1. Create data frame with 4 columns",
+    "text": "1. Create data frame with 4 columns\n\n#add patient column\npatient &lt;- (1:20)\n#create data frame\nbp_df &lt;- data.frame(patient, pre_bp, post_bp, diff_bp)\nbp_df\n\n           patient pre_bp post_bp diff_bp\nSubject_1        1    130     114      16\nSubject_2        2    128      98      30\nSubject_3        3    116     113       3\nSubject_4        4    124      99      25\nSubject_5        5    133     107      26\nSubject_6        6    134     116      18\nSubject_7        7    118     113       5\nSubject_8        8    126     111      15\nSubject_9        9    114     119      -5\nSubject_10      10    127     117      10\nSubject_11      11    141     101      40\nSubject_12      12    138     119      19\nSubject_13      13    128     130      -2\nSubject_14      14    140     122      18\nSubject_15      15    137     106      31\nSubject_16      16    131     106      25\nSubject_17      17    120     124      -4\nSubject_18      18    128     102      26\nSubject_19      19    139     117      22\nSubject_20      20    135     113      22"
+  },
+  {
+    "objectID": "ST558HW2.html#return-rows-with-negative-diff_bp",
+    "href": "ST558HW2.html#return-rows-with-negative-diff_bp",
+    "title": "ST558 homework 2",
+    "section": "2. Return rows with negative diff_bp",
+    "text": "2. Return rows with negative diff_bp\n\n#create new data frame with just negative diff_bp\nsubset(bp_df, diff_bp &lt; 0)\n\n           patient pre_bp post_bp diff_bp\nSubject_9        9    114     119      -5\nSubject_13      13    128     130      -2\nSubject_17      17    120     124      -4\n\n#Alternative \n#neg_bp_df &lt;- bp_df[bp_df$diff_bp &lt; 0, ]\n#neg_bp_df"
+  },
+  {
+    "objectID": "ST558HW2.html#add-new-column-with-true-for-post_bp-120",
+    "href": "ST558HW2.html#add-new-column-with-true-for-post_bp-120",
+    "title": "ST558 homework 2",
+    "section": "3. Add new column with true for post_bp < 120",
+    "text": "3. Add new column with true for post_bp &lt; 120\n\n# Add column for post_bp &lt; 120    \nbp_df$post_bp_less120 &lt;- bp_df$post_bp &lt; 120\n#alt code from chapter 12 extra reading\n#library(dplyr)\n#bp_df |&gt; \n#  mutate(\n#    post_bp_less120 = post_bp &lt; 120\n#  )"
+  },
+  {
+    "objectID": "ST558HW2.html#print-data-frame",
+    "href": "ST558HW2.html#print-data-frame",
+    "title": "ST558 homework 2",
+    "section": "4. Print data frame",
+    "text": "4. Print data frame\n\nknitr::kable(bp_df)\n\n\n\n\n\npatient\npre_bp\npost_bp\ndiff_bp\npost_bp_less120\n\n\n\n\nSubject_1\n1\n130\n114\n16\nTRUE\n\n\nSubject_2\n2\n128\n98\n30\nTRUE\n\n\nSubject_3\n3\n116\n113\n3\nTRUE\n\n\nSubject_4\n4\n124\n99\n25\nTRUE\n\n\nSubject_5\n5\n133\n107\n26\nTRUE\n\n\nSubject_6\n6\n134\n116\n18\nTRUE\n\n\nSubject_7\n7\n118\n113\n5\nTRUE\n\n\nSubject_8\n8\n126\n111\n15\nTRUE\n\n\nSubject_9\n9\n114\n119\n-5\nTRUE\n\n\nSubject_10\n10\n127\n117\n10\nTRUE\n\n\nSubject_11\n11\n141\n101\n40\nTRUE\n\n\nSubject_12\n12\n138\n119\n19\nTRUE\n\n\nSubject_13\n13\n128\n130\n-2\nFALSE\n\n\nSubject_14\n14\n140\n122\n18\nFALSE\n\n\nSubject_15\n15\n137\n106\n31\nTRUE\n\n\nSubject_16\n16\n131\n106\n25\nTRUE\n\n\nSubject_17\n17\n120\n124\n-4\nFALSE\n\n\nSubject_18\n18\n128\n102\n26\nTRUE\n\n\nSubject_19\n19\n139\n117\n22\nTRUE\n\n\nSubject_20\n20\n135\n113\n22\nTRUE"
+  },
+  {
+    "objectID": "ST558HW2.html#create-data-frame-with-placebo-data",
+    "href": "ST558HW2.html#create-data-frame-with-placebo-data",
+    "title": "ST558 homework 2",
+    "section": "1. Create data frame with placebo data",
+    "text": "1. Create data frame with placebo data\n\npre_bp &lt;- c(138, 135, 147, 117, 152, 134, 114, 121, 131, 130)\npost_bp &lt;- c(105, 136, 123, 130, 134, 143, 135, 139, 120, 124)\n#Create and assign names to vectors\nnames(pre_bp) &lt;- paste(\"Subject\", 1:10, sep = \"_\")\nnames(post_bp) &lt;- paste(\"Subject\", 1:10, sep = \"_\")\n#view vectors\n#pre_bp\n#post_bp\n#Calculate pre and post placebo differences\ndiff_bp &lt;- pre_bp - post_bp\n#diff_bp_placebo\n#Add patient column\npatient &lt;- (1:10)\n#create data frame\nbp_df_placebo &lt;- data.frame(patient, pre_bp, post_bp,\n                            diff_bp)\nbp_df_placebo\n\n           patient pre_bp post_bp diff_bp\nSubject_1        1    138     105      33\nSubject_2        2    135     136      -1\nSubject_3        3    147     123      24\nSubject_4        4    117     130     -13\nSubject_5        5    152     134      18\nSubject_6        6    134     143      -9\nSubject_7        7    114     135     -21\nSubject_8        8    121     139     -18\nSubject_9        9    131     120      11\nSubject_10      10    130     124       6\n\n# add column for post_bp &lt; 120\nbp_df_placebo$post_bp_less120 &lt;- bp_df_placebo$post_bp &lt; 120\n# create table of data frame\nknitr::kable(bp_df_placebo)\n\n\n\n\n\npatient\npre_bp\npost_bp\ndiff_bp\npost_bp_less120\n\n\n\n\nSubject_1\n1\n138\n105\n33\nTRUE\n\n\nSubject_2\n2\n135\n136\n-1\nFALSE\n\n\nSubject_3\n3\n147\n123\n24\nFALSE\n\n\nSubject_4\n4\n117\n130\n-13\nFALSE\n\n\nSubject_5\n5\n152\n134\n18\nFALSE\n\n\nSubject_6\n6\n134\n143\n-9\nFALSE\n\n\nSubject_7\n7\n114\n135\n-21\nFALSE\n\n\nSubject_8\n8\n121\n139\n-18\nFALSE\n\n\nSubject_9\n9\n131\n120\n11\nFALSE\n\n\nSubject_10\n10\n130\n124\n6\nFALSE"
+  },
+  {
+    "objectID": "ST558HW2.html#create-a-list-with-treatment-and-placebo-elements",
+    "href": "ST558HW2.html#create-a-list-with-treatment-and-placebo-elements",
+    "title": "ST558 homework 2",
+    "section": "2. Create a list with treatment and placebo elements",
+    "text": "2. Create a list with treatment and placebo elements\n\n#Create list\nbp_list &lt;- list(treatment = bp_df, placebo = bp_df_placebo)\nbp_list\n\n$treatment\n           patient pre_bp post_bp diff_bp post_bp_less120\nSubject_1        1    130     114      16            TRUE\nSubject_2        2    128      98      30            TRUE\nSubject_3        3    116     113       3            TRUE\nSubject_4        4    124      99      25            TRUE\nSubject_5        5    133     107      26            TRUE\nSubject_6        6    134     116      18            TRUE\nSubject_7        7    118     113       5            TRUE\nSubject_8        8    126     111      15            TRUE\nSubject_9        9    114     119      -5            TRUE\nSubject_10      10    127     117      10            TRUE\nSubject_11      11    141     101      40            TRUE\nSubject_12      12    138     119      19            TRUE\nSubject_13      13    128     130      -2           FALSE\nSubject_14      14    140     122      18           FALSE\nSubject_15      15    137     106      31            TRUE\nSubject_16      16    131     106      25            TRUE\nSubject_17      17    120     124      -4           FALSE\nSubject_18      18    128     102      26            TRUE\nSubject_19      19    139     117      22            TRUE\nSubject_20      20    135     113      22            TRUE\n\n$placebo\n           patient pre_bp post_bp diff_bp post_bp_less120\nSubject_1        1    138     105      33            TRUE\nSubject_2        2    135     136      -1           FALSE\nSubject_3        3    147     123      24           FALSE\nSubject_4        4    117     130     -13           FALSE\nSubject_5        5    152     134      18           FALSE\nSubject_6        6    134     143      -9           FALSE\nSubject_7        7    114     135     -21           FALSE\nSubject_8        8    121     139     -18           FALSE\nSubject_9        9    131     120      11           FALSE\nSubject_10      10    130     124       6           FALSE"
+  },
+  {
+    "objectID": "ST558HW2.html#access-the-first-list-element-using-three-different-types-of-syntax",
+    "href": "ST558HW2.html#access-the-first-list-element-using-three-different-types-of-syntax",
+    "title": "ST558 homework 2",
+    "section": "3. Access the first list element using three different types of syntax",
+    "text": "3. Access the first list element using three different types of syntax\n\nbp_list[1]\n\n$treatment\n           patient pre_bp post_bp diff_bp post_bp_less120\nSubject_1        1    130     114      16            TRUE\nSubject_2        2    128      98      30            TRUE\nSubject_3        3    116     113       3            TRUE\nSubject_4        4    124      99      25            TRUE\nSubject_5        5    133     107      26            TRUE\nSubject_6        6    134     116      18            TRUE\nSubject_7        7    118     113       5            TRUE\nSubject_8        8    126     111      15            TRUE\nSubject_9        9    114     119      -5            TRUE\nSubject_10      10    127     117      10            TRUE\nSubject_11      11    141     101      40            TRUE\nSubject_12      12    138     119      19            TRUE\nSubject_13      13    128     130      -2           FALSE\nSubject_14      14    140     122      18           FALSE\nSubject_15      15    137     106      31            TRUE\nSubject_16      16    131     106      25            TRUE\nSubject_17      17    120     124      -4           FALSE\nSubject_18      18    128     102      26            TRUE\nSubject_19      19    139     117      22            TRUE\nSubject_20      20    135     113      22            TRUE\n\nbp_list[[1]]\n\n           patient pre_bp post_bp diff_bp post_bp_less120\nSubject_1        1    130     114      16            TRUE\nSubject_2        2    128      98      30            TRUE\nSubject_3        3    116     113       3            TRUE\nSubject_4        4    124      99      25            TRUE\nSubject_5        5    133     107      26            TRUE\nSubject_6        6    134     116      18            TRUE\nSubject_7        7    118     113       5            TRUE\nSubject_8        8    126     111      15            TRUE\nSubject_9        9    114     119      -5            TRUE\nSubject_10      10    127     117      10            TRUE\nSubject_11      11    141     101      40            TRUE\nSubject_12      12    138     119      19            TRUE\nSubject_13      13    128     130      -2           FALSE\nSubject_14      14    140     122      18           FALSE\nSubject_15      15    137     106      31            TRUE\nSubject_16      16    131     106      25            TRUE\nSubject_17      17    120     124      -4           FALSE\nSubject_18      18    128     102      26            TRUE\nSubject_19      19    139     117      22            TRUE\nSubject_20      20    135     113      22            TRUE\n\nstr(bp_list[1])\n\nList of 1\n $ treatment:'data.frame':  20 obs. of  5 variables:\n  ..$ patient        : int [1:20] 1 2 3 4 5 6 7 8 9 10 ...\n  ..$ pre_bp         : num [1:20] 130 128 116 124 133 134 118 126 114 127 ...\n  ..$ post_bp        : num [1:20] 114 98 113 99 107 116 113 111 119 117 ...\n  ..$ diff_bp        : num [1:20] 16 30 3 25 26 18 5 15 -5 10 ...\n  ..$ post_bp_less120: logi [1:20] TRUE TRUE TRUE TRUE TRUE TRUE ..."
+  },
+  {
+    "objectID": "ST558HW2.html#access-the-placebo-pre_bp-column",
+    "href": "ST558HW2.html#access-the-placebo-pre_bp-column",
+    "title": "ST558 homework 2",
+    "section": "4. Access the placebo pre_bp column",
+    "text": "4. Access the placebo pre_bp column\n\n#obtain pre-bp_placebo column in one line\nbp_list$placebo[[2]]\n\n [1] 138 135 147 117 152 134 114 121 131 130\n\n# Or\n#bp_list$placebo$pre_bp"
+  },
+  {
+    "objectID": "ST558HW2.html#add-status-column-to-data-frames-using-lists",
+    "href": "ST558HW2.html#add-status-column-to-data-frames-using-lists",
+    "title": "ST558 homework 2",
+    "section": "1. Add status column to data frames using lists",
+    "text": "1. Add status column to data frames using lists\n\n#create status columns\nbp_list[[1]]$status &lt;- character(20)\nbp_list[[2]]$status &lt;- character(10)\nbp_list\n\n$treatment\n           patient pre_bp post_bp diff_bp post_bp_less120 status\nSubject_1        1    130     114      16            TRUE       \nSubject_2        2    128      98      30            TRUE       \nSubject_3        3    116     113       3            TRUE       \nSubject_4        4    124      99      25            TRUE       \nSubject_5        5    133     107      26            TRUE       \nSubject_6        6    134     116      18            TRUE       \nSubject_7        7    118     113       5            TRUE       \nSubject_8        8    126     111      15            TRUE       \nSubject_9        9    114     119      -5            TRUE       \nSubject_10      10    127     117      10            TRUE       \nSubject_11      11    141     101      40            TRUE       \nSubject_12      12    138     119      19            TRUE       \nSubject_13      13    128     130      -2           FALSE       \nSubject_14      14    140     122      18           FALSE       \nSubject_15      15    137     106      31            TRUE       \nSubject_16      16    131     106      25            TRUE       \nSubject_17      17    120     124      -4           FALSE       \nSubject_18      18    128     102      26            TRUE       \nSubject_19      19    139     117      22            TRUE       \nSubject_20      20    135     113      22            TRUE       \n\n$placebo\n           patient pre_bp post_bp diff_bp post_bp_less120 status\nSubject_1        1    138     105      33            TRUE       \nSubject_2        2    135     136      -1           FALSE       \nSubject_3        3    147     123      24           FALSE       \nSubject_4        4    117     130     -13           FALSE       \nSubject_5        5    152     134      18           FALSE       \nSubject_6        6    134     143      -9           FALSE       \nSubject_7        7    114     135     -21           FALSE       \nSubject_8        8    121     139     -18           FALSE       \nSubject_9        9    131     120      11           FALSE       \nSubject_10      10    130     124       6           FALSE"
+  },
+  {
+    "objectID": "ST558HW2.html#use-loop-to-create-status-column-values-for-treatment-group",
+    "href": "ST558HW2.html#use-loop-to-create-status-column-values-for-treatment-group",
+    "title": "ST558 homework 2",
+    "section": "2. Use loop to create status column values for treatment group",
+    "text": "2. Use loop to create status column values for treatment group\n\n#create status values for treatment group\nfor (i in seq_len(nrow(bp_list$treatment))) {\n  if(bp_list$treatment$post_bp[i] &lt;= 120) {\n    bp_list$treatment$status[i] &lt;- \"optimal\"\n  } else if (bp_list$treatment$post_bp[i] &lt;= 130) {\n    bp_list$treatment$status[i] &lt;- \"borderline\"\n  } else if (bp_list$treatment$post_bp[i] &gt; 130) {\n    bp_list$treatment$status[i] &lt;- \"high\"\n  }\n  }"
+  },
+  {
+    "objectID": "ST558HW2.html#use-loop-to-create-status-column-values-for-placebo-group",
+    "href": "ST558HW2.html#use-loop-to-create-status-column-values-for-placebo-group",
+    "title": "ST558 homework 2",
+    "section": "3. Use loop to create status column values for placebo group",
+    "text": "3. Use loop to create status column values for placebo group\n\n#create status values for the placebo group\nfor (i in seq_len(nrow(bp_list$placebo))) {\n  if(bp_list$placebo$post_bp[i] &lt;= 120) {\n    bp_list$placebo$status[i] &lt;- \"optimal\"\n  } else if (bp_list$placebo$post_bp[i] &lt;= 130) {\n    bp_list$placebo$status[i] &lt;- \"borderline\"\n  } else if (bp_list$placebo$post_bp[i] &gt; 130) {\n    bp_list$placebo$status[i] &lt;- \"high\"\n  }\n}\nbp_list\n\n$treatment\n           patient pre_bp post_bp diff_bp post_bp_less120     status\nSubject_1        1    130     114      16            TRUE    optimal\nSubject_2        2    128      98      30            TRUE    optimal\nSubject_3        3    116     113       3            TRUE    optimal\nSubject_4        4    124      99      25            TRUE    optimal\nSubject_5        5    133     107      26            TRUE    optimal\nSubject_6        6    134     116      18            TRUE    optimal\nSubject_7        7    118     113       5            TRUE    optimal\nSubject_8        8    126     111      15            TRUE    optimal\nSubject_9        9    114     119      -5            TRUE    optimal\nSubject_10      10    127     117      10            TRUE    optimal\nSubject_11      11    141     101      40            TRUE    optimal\nSubject_12      12    138     119      19            TRUE    optimal\nSubject_13      13    128     130      -2           FALSE borderline\nSubject_14      14    140     122      18           FALSE borderline\nSubject_15      15    137     106      31            TRUE    optimal\nSubject_16      16    131     106      25            TRUE    optimal\nSubject_17      17    120     124      -4           FALSE borderline\nSubject_18      18    128     102      26            TRUE    optimal\nSubject_19      19    139     117      22            TRUE    optimal\nSubject_20      20    135     113      22            TRUE    optimal\n\n$placebo\n           patient pre_bp post_bp diff_bp post_bp_less120     status\nSubject_1        1    138     105      33            TRUE    optimal\nSubject_2        2    135     136      -1           FALSE       high\nSubject_3        3    147     123      24           FALSE borderline\nSubject_4        4    117     130     -13           FALSE borderline\nSubject_5        5    152     134      18           FALSE       high\nSubject_6        6    134     143      -9           FALSE       high\nSubject_7        7    114     135     -21           FALSE       high\nSubject_8        8    121     139     -18           FALSE       high\nSubject_9        9    131     120      11           FALSE    optimal\nSubject_10      10    130     124       6           FALSE borderline"
+  },
+  {
+    "objectID": "ST558HW2.html#write-a-function-to-obtain-individual-summary-statistics",
+    "href": "ST558HW2.html#write-a-function-to-obtain-individual-summary-statistics",
+    "title": "ST558 homework 2",
+    "section": "1. Write a function to obtain individual summary statistics",
+    "text": "1. Write a function to obtain individual summary statistics\n\nsummary_stats &lt;- function(my_list, stat = \"mean\") {\n  #stats (\"mean\", \"var\" \"sd\", \"min\", \"max\")\n  my_fun &lt;- get(stat)\n  stat_results &lt;- numeric(0)\n  stat_names &lt;- character(0)\n    for(df_name in names(my_list)) {\n    df &lt;- my_list[[df_name]]\n    if(!is.numeric(df$pre_bp) || !is.numeric(df$post_bp) || \n       !is.numeric(df$diff_bp)) {\n      stop(\"not numeric\")\n    }\n    stat_results &lt;- c(stat_results,my_fun(df$pre_bp),\n                      my_fun(df$post_bp),\n                      my_fun(df$diff_bp))\n    stat_names &lt;- c(stat_names, \n                    paste(df_name, \"pre_bp\", stat, sep = \"_\"),\n                    paste(df_name, \"post_bp\", stat, sep = \"_\"), \n                    paste(df_name, \"diff_bp\", stat, sep = \"_\"))\n  }\n  names(stat_results) &lt;- stat_names\n  return(stat_results)\n}"
+  },
+  {
+    "objectID": "ST558HW2.html#apply-function-without-specifying-statistic",
+    "href": "ST558HW2.html#apply-function-without-specifying-statistic",
+    "title": "ST558 homework 2",
+    "section": "2. Apply function without specifying statistic",
+    "text": "2. Apply function without specifying statistic\n\nsummary_stats(bp_list)\n\n treatment_pre_bp_mean treatment_post_bp_mean treatment_diff_bp_mean \n                129.35                 112.35                  17.00 \n   placebo_pre_bp_mean   placebo_post_bp_mean   placebo_diff_bp_mean \n                131.90                 128.90                   3.00"
+  },
+  {
+    "objectID": "ST558HW2.html#a.-apply-function-specifying-var",
+    "href": "ST558HW2.html#a.-apply-function-specifying-var",
+    "title": "ST558 homework 2",
+    "section": "3a. Apply function specifying “var”",
+    "text": "3a. Apply function specifying “var”\n\nsummary_stats(bp_list, \"var\")\n\n treatment_pre_bp_var treatment_post_bp_var treatment_diff_bp_var \n             64.55526              74.76579             153.68421 \n   placebo_pre_bp_var   placebo_post_bp_var   placebo_diff_bp_var \n            149.87778             124.98889             341.33333"
+  },
+  {
+    "objectID": "ST558HW2.html#b.-apply-function-specifying-sd",
+    "href": "ST558HW2.html#b.-apply-function-specifying-sd",
+    "title": "ST558 homework 2",
+    "section": "3b. Apply function specifying “sd”",
+    "text": "3b. Apply function specifying “sd”\n\nsummary_stats(bp_list, \"sd\")\n\n treatment_pre_bp_sd treatment_post_bp_sd treatment_diff_bp_sd \n            8.034629             8.646721            12.396944 \n   placebo_pre_bp_sd   placebo_post_bp_sd   placebo_diff_bp_sd \n           12.242458            11.179843            18.475209"
+  },
+  {
+    "objectID": "ST558HW2.html#c.-apply-function-specifying-min",
+    "href": "ST558HW2.html#c.-apply-function-specifying-min",
+    "title": "ST558 homework 2",
+    "section": "3c. Apply function specifying “min”",
+    "text": "3c. Apply function specifying “min”\n\nsummary_stats(bp_list, \"min\")\n\n treatment_pre_bp_min treatment_post_bp_min treatment_diff_bp_min \n                  114                    98                    -5 \n   placebo_pre_bp_min   placebo_post_bp_min   placebo_diff_bp_min \n                  114                   105                   -21"
+  },
+  {
+    "objectID": "ST558HW2.html#d.-apply-function-specifying-max",
+    "href": "ST558HW2.html#d.-apply-function-specifying-max",
+    "title": "ST558 homework 2",
+    "section": "3d. Apply function specifying “max”",
+    "text": "3d. Apply function specifying “max”\n\nsummary_stats(bp_list, \"max\")\n\n treatment_pre_bp_max treatment_post_bp_max treatment_diff_bp_max \n                  141                   130                    40 \n   placebo_pre_bp_max   placebo_post_bp_max   placebo_diff_bp_max \n                  152                   143                    33"
+  }
+]
